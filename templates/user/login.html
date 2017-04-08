@@ -1,4 +1,7 @@
 {% extends 'layout.html' %}
+{% load socialaccount %}
 {% block container %}
     <h1>login</h1>
+    <a href="{% provider_login_url "facebook" method="oauth2" %}">facebook OAuth2</a>
+    <a href="{% provider_login_url "kakao" %}">Kakao OAuth2</a>
 {% endblock %}
