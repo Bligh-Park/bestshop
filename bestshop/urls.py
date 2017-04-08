@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^user/', include('user.urls')),
     url(r'^product/', include('product.urls')),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^summernote/', include('django_summernote.urls')),
     url(r'^', include('etcpage.urls')),
 ]
