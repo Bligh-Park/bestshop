@@ -11,6 +11,9 @@ class Category(models.Model):
             ('parent', 'priority'),
         )
 
+    def __str__(self):
+        return '%d. %s' % (self.id, self.name)
+
 
 class Product(models.Model):
     name = models.CharField(max_length=64)
@@ -21,6 +24,9 @@ class Product(models.Model):
     score = models.FloatField()
     created_at = models.DateTimeField(auto_now_add=True)
     categories = models.ManyToManyField('Category')
+
+    def __str__(self):
+        return '%d. %s' % (self.id, self.name)
 
 
 class DateRangeDiscount(models.Model):
