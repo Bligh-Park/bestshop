@@ -1,4 +1,6 @@
+from django.contrib.auth.models import User
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 class UserLevel(models.Model):
