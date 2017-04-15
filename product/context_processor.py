@@ -1,3 +1,4 @@
+from product.models import Category
 
 def root_categories(request):
     return {
