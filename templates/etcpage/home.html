@@ -3,6 +3,6 @@
     <h1>bestshop</h1>
 
     {% for product in products %}
-        <p><a href="#">{{ product.name }}</a></p>
+        <p><a href="{% url 'product_detail' product_id=product.id %}">{{ product.name }}</a></p>
     {% endfor %}
 {% endblock %}
