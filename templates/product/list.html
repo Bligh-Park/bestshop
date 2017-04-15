@@ -1,7 +1,14 @@
 {% extends 'layout.html' %}
 {% block container %}
-    <h1>{{  category.name }} 자식 카테고리 </h1>
+    {% if category.parent %}
+        <p><a href="{% url 'product_list' %}?category_id={{ category.parent.id }}">부모 카테고리 ({{ category.parent.name }})</a></p>
+    {% endif %}
+    <h1>{{ category.name }} 자식 카테고리</h1>
+    {% for child in category.parent_set.all %}
+        <p><a href="{% url 'product_list' %}?category_id={{ child.id }}">{{ child.name }}</a></p>
+    {% endfor %}
+    <h1>{{ category.name }} 카테고리 상품 목록</h1>
     {% for product in products %}
-        <p>{{ parent.name }}</p>
+        <p><a href="{% url 'product_detail' product_id=product.id %}">{{ product.name }}</a></p>
     {% endfor %}
 {% endblock %}
