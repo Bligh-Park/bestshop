@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% block container %}
+    <h1>장바구니</h1>
+    <table>
+    <tr>
+        <td>상품ID</td>
+        <td>상품명</td>
+        <td>갯수</td>
+        <td>선택</td>
+        <td>삭제</td>
+    </tr>
+    {% for cart in request.user.userinfo.cart.all %}
+        <tr>
+            <td>{{ cart.product.id }}</td>
+            <td>{{ cart.product.name }}</td>
+            <td><input type="number" value="{{ cart.count }}"></td>
+            <td><input type="checkbox" name="cart_{{ cart.id }}" checked></td>
+            <td><button type="button">삭제</button></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

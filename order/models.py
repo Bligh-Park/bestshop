@@ -6,6 +6,13 @@ class Cart(models.Model):
     product = models.ForeignKey('product.Product')
     count = models.IntegerField()
 
+    # 나중에 카트에 있는 상품을 추가했을 때 기존 상품 카운트를 올리기 위해 작업
+    # unique 를 걸어줘야 함
+    class Meta:
+        unique_together = (
+            ('userinfo', 'product'),
+        )
+
 
 class Order(models.Model):
     userinfo = models.ForeignKey('user.UserInfo')
