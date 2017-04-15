@@ -20,7 +20,7 @@ class Order(models.Model):
     delivery_fee = models.IntegerField()
     point = models.IntegerField()
     amount = models.IntegerField()
-    tid = models.CharField(max_length=128)
+    tid = models.CharField(max_length=128, null=True)
     state = models.IntegerField()
     postcode = models.CharField(max_length=5)
     address_1 = models.CharField(max_length=128)

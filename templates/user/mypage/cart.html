@@ -1,5 +1,7 @@
 {% extends 'layout.html' %}
 {% block container %}
+<form action="{% url 'order_order' %}" method="POST">
+    {% csrf_token %}
     <h1>장바구니</h1>
     <table>
     <tr>
@@ -14,9 +16,13 @@
             <td>{{ cart.product.id }}</td>
             <td>{{ cart.product.name }}</td>
             <td><input type="number" value="{{ cart.count }}"></td>
-            <td><input type="checkbox" name="cart_{{ cart.id }}" checked></td>
+            <td><input type="checkbox" name="cart" value="{{ cart.id }}" checked></td>
             <td><button type="button">삭제</button></td>
         </tr>
     {% endfor %}
+
     </table>
+
+    <button type="submit">선택한 상품 주문하기</button>
+</form>
 {% endblock %}
