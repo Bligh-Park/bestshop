@@ -1,8 +1,11 @@
 from django.db import models
 
 # Create your models here.
+from django.db import models
+
+
 class Cart(models.Model):
-    userinfo = models.ForeignKey('user.UserInfo')
+    userinfo = models.ForeignKey('user.UserInfo', related_name='cart')
     product = models.ForeignKey('product.Product')
     count = models.IntegerField()
 
@@ -26,6 +29,10 @@ class Order(models.Model):
     address_1 = models.CharField(max_length=128)
     address_2 = models.CharField(max_length=128)
     name = models.CharField(max_length=64)
+
+    @property
+    def subject(self):
+        return self.orderproductitem_set.first().product.name# + (' 외 %d건')
 
 
 class OrderProductItem(models.Model):
