@@ -1,4 +1,10 @@
 {% extends 'layout.html' %}
+{% load humanize %}
 {% block container %}
-    {{  product.name }}
+    <h1>{{  product.name }}</h1>
+    <p>가격 : {{ product.price|intcomma }}</p>
+    <p>재고 : {{ product.inventory_count }}</p>
+    <p>평점 : {{ product.score }} / 5.0</p>
+
+    {{ product.description }}
 {% endblock %}

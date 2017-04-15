@@ -12,3 +12,19 @@ def product_detail(request, product_id):
     return render(request, 'product/detail.html', context ={
         'product' : product
     })
+
+
+def product_list(request):
+    try:
+        category = Category.objects.get(id=request.GET.get('category_id'))
+    except Category.DoesNotExist:
+        raise Http404()
+
+    print(category.all_parent_set)
+
+    return render(request, 'product/list.html', context={
+        'category': category,
+        'product': Product.objects.filter(
+            categories__id__in=[category.all_parent_set]
+        ).distinct(),
+    })

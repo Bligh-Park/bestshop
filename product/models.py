@@ -3,13 +3,22 @@ from django.db import models
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=64)
-    parent = models.ForeignKey('self', null=True, blank=True)
+    parent = models.ForeignKey('self', null=True, blank=True, related_name='parent_set')
     priority = models.IntegerField()
 
     class Meta:
         index_together = (
             ('parent', 'priority'),
         )
+
+    @property
+    def all_parent_set(self):
+        all_parent_set_list=[self]
+
+        for category in self.parent_set.all():
+            all_parent_set_list.extend(category.all_parent_set)
+
+        return all_parent_set_list
 
     def __str__(self):
         return '%d. %s' % (self.id, self.name)

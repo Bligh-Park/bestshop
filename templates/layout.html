@@ -35,7 +35,7 @@
             <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
             {% for category in root_categories %}
             <li>
-                <a href="#">{{ category.name }}</a>
+                <a href="{% url 'product_list' %}?category_id={{ category_id }}">{{ category.name }}</a>
             </li>
             {% endfor %}
           </ul>

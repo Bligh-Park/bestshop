@@ -1,0 +1,7 @@
+{% extends 'layout.html' %}
+{% block container %}
+    <h1>{{  category.name }} 자식 카테고리 </h1>
+    {% for product in products %}
+        <p>{{ parent.name }}</p>
+    {% endfor %}
+{% endblock %}
